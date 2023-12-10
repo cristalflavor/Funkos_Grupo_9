@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "item_name": "Fideos Secos",
+        "item_price": "640",
+        "price_symbol": "$"
+    },
+    {
+        "id": 2,
+        "item_name": "Arroz",
+        "item_price": "800",
+        "price_symbol": "$"
+    },
+    {
+        "id": 3,
+        "item_name": "Polenta",
+        "item_price": "550",
+        "price_symbol": "$"
+    },
+    {
+        "id": 4,
+        "item_name": "Lentejas",
+        "item_price": "750",
+        "price_symbol": "$"
+    },
+    {
+        "id": 5,
+        "item_name": "Fideos Frescos",
+        "item_price": "1800",
+        "price_symbol": "$"
+    },
+    {
+        "id": 6,
+        "item_name": "Polenta Instantánea",
+        "item_price": "730",
+        "price_symbol": "$"
+    }
+]
