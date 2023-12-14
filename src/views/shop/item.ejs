@@ -1,49 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item</title>
-    <link href="../../css/index.css" rel="stylesheet" type="text/css"/>
-</head>
-<body>
-    <header>
-        <nav class="navbar container">
-            <picture class="navbar__logo">
-                <a href="../../index.html">
-                    <img src="../../img/branding/logo_light_horizontal.svg" alt="isologotipo de la marca FUNKOSHOP">
-                </a>
-            </picture>
-            <ul class="navbar__menu">
-                <li class="navbar__item with-submenu">
-                    <a class="navbar__link with-icon" href="../shop/shop.html">SHOP<iconify-icon icon="mdi:chevron-down"></iconify-icon></a>
-                    <ul class="submenu">
-                        <li class="submenu__item">
-                            <a href="" class="submenu__link">Funkos</a>
-                        </li>
-                        <li class="submenu__item">
-                            <a href="" class="submenu__link">Remeras</a>
-                        </li>
-                        <li class="submenu__item">
-                            <a href="" class="submenu__link">Llaveros</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="navbar__item">
-                    <a class="navbar__link" href=".pages/contacto.html">CONTACTO</a>
-                </li>
-                <li class="navbar__item">
-                    <a class="navbar__link" href="../admin/login.html">LOGIN</a>
-                </li>
-                <li class="navbar__item">
-                    <a class="navbar__cart" href="../shop/cart.html">
-                        <img src="../../img/icons/cart-icon.svg" alt="icono de carrito">
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+<%- include('../partials/header.ejs') %>
     <main class="container">
         <section class="item">
             <picture class="item__img card-item__cover"">
@@ -73,7 +28,7 @@
                     <% prodSlider.forEach( item => { %>
                     <li class="glide__slide">
                         <article class="card-item">
-                            <a class="card-item__link" href="">
+                            <a class="card-item__link" href="/shop/item/<%= item.product_id %>">
                                 <picture class="card-item__cover">
                                     <span class="card-item__tag">Nuevo</span>
                                     <img class="card-item__img--front" src="/img/<%= item.img_front %>" alt="Figura coleccionable Funko de un Stormtrooper">
@@ -98,28 +53,10 @@
               </div>
         </section>
     </main>
-    <footer class="footer">
-        <nav class="navbar container">
-            <ul class="navbar__item">
-                <li class="navbar__item">
-                    <a class="navbar__link" href="../shop/shop.html">SHOP</a>
-                </li>
-                <li class="navbar__item">
-                    <a class="navbar__link" href="../admin/login.html">INGRESAR</a>
-                </li>
-                <li class="navbar__item">
-                    <a class="navbar__link" href="">CONTACTO</a>
-                </li>
-            </ul>
-            <picture>
-                <img src="../../img/branding/isotype.svg" alt="isologotipo de la marca FUNKOSHOP">
-            </picture>
-        </nav>
-        <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
-    </footer>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
     <script src="../../js/glide.js"></script>
     <script src="../../js/item.js"></script>
+    <%- include('../partials/footer.ejs') %>
 </body>
 </html>

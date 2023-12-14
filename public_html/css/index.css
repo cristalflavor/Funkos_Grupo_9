@@ -593,6 +593,70 @@ header{
     text-align: center;
 }
 
+/*Table*/
+
+.product_search {
+    margin-top: 3em;
+    margin-bottom: 2em;
+    width: 33%;
+    line-height: 2;
+    display: inline-block;
+}
+
+.super_h1 {
+    font-size: var(--font-xlarge);
+    font-family: var(--base-font);
+}
+
+table {
+    width: 100%;
+    margin-top: 1em;
+    
+  }
+  
+  td, th {
+    padding: 10px;
+    text-align: center;
+    color: black;
+    font-size: var(--font-large);
+  }
+  
+  colgroup:first-child {
+    background-color: lightgray;
+  }
+  
+  colgroup:nth-child(2) {
+    background-color: white;
+  }
+
+
+  tfoot {
+    background-color: green;
+    color: white;
+  }
+
+  .search-container {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-template-rows: auto;
+  grid-column-gap: 10px;
+}
+
+.search-icon {
+  width: 4%;
+  justify-self: center;
+  align-self: center; 
+  }
+
+.product_search {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  
+  line-height: 2;
+  }
+  
+
+
 
 /*Animations*/
 
