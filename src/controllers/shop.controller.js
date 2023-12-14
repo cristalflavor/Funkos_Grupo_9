@@ -33,10 +33,7 @@ module.exports = {
 
         const { id } = req.params;
         const prod = await getOne(id);
-        
-
-        //console.log('licence_id: ' + id_licence);
-       // console.log('lic: ' +  lic);
+        const prods = await getAll();
 
         if(prod.error){
             res.render(path.resolve(__dirname, '../views/error/error.ejs'),
@@ -51,16 +48,28 @@ module.exports = {
             const [prodRows, prodInfo] = prod;
 
             const licence_id = prodRows.licence_id;
-            console.log(licence_id);
+
             const lic = await getOneLicence(licence_id);
             const [licRows, licInfo] = lic;
 
-            console.log(licRows.licence_name);
+            const [prodsArray, prodsInfo] = prods;
+
+            const licencePromises = prodsArray.map(async (product) => {
+                const licence_id = product.licence_id;
+                const lic = await getOneLicence(licence_id);
+                const [licRows, licInfo] = lic;
+                return { ...product, licRows };
+              });
+
+            const prodSlider = await Promise.all(licencePromises);
+
+            console.log(prodSlider[10].licRows.licence_name);
             res.render(path.resolve(__dirname, '../views/shop/item.ejs'),
             {
                 title: 'Item',
                 prodRows,
-                licRows
+                licRows,
+                prodSlider
             }
         )
         }
