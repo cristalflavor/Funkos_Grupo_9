@@ -1,13 +1,12 @@
 const express = require('express');
-const path = require('path');
-
 const router = express.Router();
 
-router.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../../public_html/pages/shop/shop.html')));
-router.get('/item/:id', (req, res) => {
-    const { id } = req.params;
+const {shop, item, add, cart, post_cart} = require('../controllers/shop.controller');
 
-    res.send(`Solicitado el item: ${id}`);
-});
+router.get('/', shop);
+router.get('/item/:id', item);
+router.post('/item/:id/add', add);
+router.get('/cart', cart);
+router.post('/cart', post_cart);
 
 module.exports = router;

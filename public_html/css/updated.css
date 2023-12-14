@@ -287,12 +287,7 @@ header{
 
 .slider__items{
     display: flex;
-    flex-wrap: wrap;
     gap: var(--spacing-24);
-}
-
-.slider__item{
-    flex: 1 0 calc(33.33% - var(--spacing-24));
 }
 
 .slider__title{
@@ -582,15 +577,6 @@ header{
 
 .item__promo a{
     text-decoration: underline;
-}
-
-/*Error*/
-
-.error {
-    display: block;
-    width: 30%;
-    margin: auto;
-    text-align: center;
 }
 
 
