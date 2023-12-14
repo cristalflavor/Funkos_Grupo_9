@@ -1,9 +1,9 @@
 const { conn } = require('../config/conn');
 
-const getAll = async () => {
+const getAllLicence = async () => {
 
     try{
-        const data = await conn.query('SELECT * FROM product;');
+        const data = await conn.query('SELECT * FROM licence;');
 
         return data;
     }catch(error){
@@ -16,10 +16,10 @@ const getAll = async () => {
     }
 }
 
-const getOne = async (id) => {
+const getOneLicence = async (id) => {
 
     try{
-        const data = await conn.query('SELECT * FROM product WHERE product_id = ?;', [id]);
+        const data = await conn.query('SELECT * FROM licence WHERE licence_id = ?;', [id]);
 
         return data[0];
     }catch(error){
@@ -33,6 +33,6 @@ const getOne = async (id) => {
 }
 
 module.exports = {
-    getAll,
-    getOne
+    getAllLicence,
+    getOneLicence
 }
