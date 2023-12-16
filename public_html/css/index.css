@@ -671,7 +671,7 @@ table {
   .admin__icon{
     font-size: 2em;
     padding-right: 1rem;
-    
+    cursor: pointer;
     
   }
   
@@ -704,31 +704,36 @@ table {
     display: flex;
     font-size: x-large;
     float: left;
-    
   }
   #add__icon{
     color: red !important;
     font-size: 4rem;
     padding-left: 1rem;
   }
-  .admin-table__header{
+  #table__header.admin-table__header {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 5% 20% 22% 25% auto auto;
     padding-left: 0;
-    font-size: medium;
-    gap: 8%;
+    align-items: center;
+    font-size: var(--font-xsmall);
+    justify-content: space-between;
     height: 50%;
     background-color: white;
     color: black;
   }
-  .admin-table__row{
+  #table__row.admin-table__row {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 6% 20% 22% 25% auto auto; /* Agrega dos columnas adicionales para los íconos */
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: space-between; /* Alinea los íconos a la derecha */
     padding-left: 0;
-    font-size: var(--font-xxsmall);
+    font-size: 0.6rem;
+}
+  .pencil, .trash {
+    font-size: 2rem;
   }
-  .admin-table__row>:first-child{
-    
+  .pencil {
+    margin-right: 0.5rem;
   }
 
 

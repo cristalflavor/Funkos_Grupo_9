@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const {admin, create, post_create, edit, put_edit, delete_it} = require('../controllers/admin.controller');
+const { admin, create, post_create, edit, put_edit, delete_it, search } = require('../controllers/admin.controller');
 
 router.get('/', admin);
+router.get('/:search', search);
 router.get('/create', create);
 router.post('/create', post_create);
 router.get('/edit/:id', edit);
