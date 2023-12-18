@@ -16,6 +16,22 @@ const getOneUser = async (email, pass) => {
     }
 }
 
+setOneUser = async(name, lastname, email, pass) => {
+    try{
+        const data = await conn.query('INSERT INTO user VALUES(?, ?, ?, ?);', [name, lastname, email, pass]);
+        console.log(email + " " + pass);
+        return data[0];
+    }catch(error){
+        return {
+            error: true,
+            message: 'Hemos encontrado un error: ' + error
+        }
+    }finally{
+        conn.releaseConnection();
+    }
+}
+
 module.exports = {
-    getOneUser
+    getOneUser,
+    setOneUser
 }

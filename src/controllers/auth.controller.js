@@ -1,6 +1,6 @@
 const path = require('path');
 
-const { getOneUser } = require('../models/user.model');
+const { getOneUser, setOneUser } = require('../models/user.model');
 
 module.exports = {
     post_login: async (req, res) => {
@@ -12,10 +12,11 @@ module.exports = {
           if (user_founded!=null) {
 
             req.session.isLogged = true;
-            res.render(path.resolve(__dirname, '../views/index_ejs.ejs'), {
+            res.redirect('/home');
+            /*res.render(path.resolve(__dirname, '../views/index_ejs.ejs'), {
               title: "Home",
               isLogged: req.session.isLogged
-            });
+            });*/
           } else {
             res.render(path.resolve(__dirname, '../views/auth/login.ejs'), {
               title: "Login",
@@ -23,7 +24,6 @@ module.exports = {
             });
           }
         } catch (error) {
-          // Manejar errores, por ejemplo, problemas de conexión a la base de datos
           console.error(error);
           res.status(500).send("Error interno del servidor");
         }
@@ -44,9 +44,28 @@ module.exports = {
         res.render(path.resolve(__dirname, '../views/auth/register.ejs'))
     },
     post_register: (req, res) => {
+        const isLogged = false;
+        const { register__name, register__lastname, register__email, register__password } = req.body;
+
+        const fechaActual = new Date();
+
+        const anyo = fechaActual.getFullYear();
+        const mes = String(fechaActual.getMonth() + 1).padStart(2, '0');
+        const dia = String(fechaActual.getDate()).padStart(2, '0');
+        const hora = String(fechaActual.getHours()).padStart(2, '0');
+        const minutos = String(fechaActual.getMinutes()).padStart(2, '0');
+        const segundos = String(fechaActual.getSeconds()).padStart(2, '0');
+
+        const register__time = `${anyo}-${mes}-${dia}T${hora}:${minutos}:${segundos}`;
+        setOneUser(register__name, register__lastname, register__email, register__password, register__time);
+
+        if(req.session.isLogged === undefined){
+          req.session.isLogged = false;
+        }
         res.render(path.resolve(__dirname, '../views/auth/register_success.ejs'),
         {
-            title: "Success"
+            title: "Success",
+            isLogged
         })
     },
     logout: (req, res) => res.send('Esta es la ruta que desloguea o cierra la sesión del usuario')
