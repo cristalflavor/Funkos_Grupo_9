@@ -23,7 +23,7 @@
                         <p><%= item?.sku ?? ""  %></p>
                         <p><%= item?.product_name ?? ""  %></p>
                         <p>Figura Coleccionable</p>
-                        <a href=""><iconify-icon class="pencil" icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                        <a href="/admin/edit/<%= item.product_id %>"><iconify-icon class="pencil" icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
                         <a href=""><iconify-icon class="trash" icon="heroicons-solid:trash" style="color:red;"></a>
                     </article>
                     <% }) %>
@@ -35,10 +35,10 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script>
         function realizarBusqueda() {
-        var search= document.getElementById('search').value;
+            var search= document.getElementById('search').value;
 
-        window.location.href = '/admin/' + encodeURIComponent(search);
-    }
+            window.location.href = '/admin/' + encodeURIComponent(search);
+        }
     </script>
 </body>
 </html>

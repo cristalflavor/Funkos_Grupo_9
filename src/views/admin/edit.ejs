@@ -30,7 +30,73 @@
     </header>
     <main>
 
-    </main>
+
+      <main id="edit">
+        <h2 class="edit__title">EDITAR ITEM</h2>
+        <form class="edit__form" action="/admin/edit" method="POST" enctype="application/x-www-form-urlencoded">
+          <div class="form__flex">
+          <div class="form__box--flex">
+            <label class="form__label" for="collection">Categoría:</label>
+            <select class="form__select" name="collection" id="collection" required>
+              <option value="" disabled selected hidden>Seleccionar</option>
+              <option value="Figuras Coleccionables">Figuras Coleccionables</option>
+              <option value="LLaveros">LLaveros</option>
+              <option value="Remeras">Remeras</option>
+            </select>
+          </div>
+          <div class="form__box--flex">
+            <label class="form__label" for="collection">Licencia:</label>
+            <select class="form__select" name="collection" id="collection" required>
+              <option value="" disabled selected hidden>Seleccionar</option>
+              <option value="starwars">Star Wars</option>
+              <option value="pokemon">Pokemon</option>
+              <option value="harrypotter">Harry Potter</option>
+            </select>
+          </div>
+          <div>
+            <div class="form__box--flex">
+              <label class="form__label" for="name">Nombre del producto:</label>
+              <input class="form__input" type="text" name="name" id="name" placeholder="<%= prodRows.product_name %>" required />
+            </div>
+            <div>
+              <textarea name="description" id="description" cols="40" rows="5" placeholder="<%= prodRows.product_description %>" required></textarea>
+            </div>
+            <div>
+              <div class="form__flex">
+                <div class="form__box--flex">
+                  <label class="form__label" for="sku">SKU:</label>
+                  <input class="form__input" type="text" name="sku" id="sku" placeholder="<%= prodRows.sku %>" />
+                </div>
+                <div class="form__box--flex">
+                  
+                  <div class="form__box--flex">
+                    <label class="form__label" for="price">Precio:</label>
+                    <input class="form__input" type="text" name="price" id="price" data-type="currency" placeholder="$<%= prodRows.product_price %>" required />
+                  </div>
+                </div>
+                <div class="form__box--flex">
+                  <label class="form__label" for="stock">Stock:</label>
+                  <div class="form__input--wrapper">
+                    <input class="form__input" type="text" name="stock" id="stock" placeholder="<%= prodRows.stock %>" required /><span>unidades</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <input type="file" name="file" id="file" />
+            <br /><br />
+            <picture>
+              <img src="/img/<%= prodRows.img_front %>" id="front" />
+            </picture>
+            <picture>
+              <img src="/img/<%= prodRows.img_back %>" id="back" />
+            </picture>
+          </div>
+        </div>
+        </form>
+      </main>
+
     <footer class="footer">
         <nav class="navbar container">
             <ul class="navbar__item">
@@ -54,5 +120,18 @@
         <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
     </footer>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+      let input = document.getElementById("file");
+      let front = document.getElementById("front");
+      let back = document.getElementById("back");
+
+      input.addEventListener("change", function() {
+  
+        let filexname = input.files[0].name;
+
+        front.setAttribute("src", "/img/" + filexname);
+        back.setAttribute("src", "/img/" + filexname.replace("1", "box"));
+      });
+    </script>
 </body>
 </html>

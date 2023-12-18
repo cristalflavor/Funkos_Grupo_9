@@ -17,8 +17,17 @@ module.exports = {
         res.render(path.resolve(__dirname, '../views/admin/create.ejs'))
     },
     post_create: (req, res) => res.send('Esta es la vista para agregar un nuevo item'),
-    edit: (req, res) => {
-        res.render(path.resolve(__dirname, '../views/admin/edit.ejs'))
+    edit: async (req, res) => {
+        const { id } = req.params;
+
+        const [prodRows] = await getOne(id);
+
+        res.render(path.resolve(__dirname, '../views/admin/edit.ejs'),
+        {
+            title: 'Edit Item',
+            prodRows
+        }
+        )
     },
     put_edit: (req, res) => res.send('Esta es la vista para impactar la modificación'),
     delete_it: (req, res) => res.send('Esta es la vista para eliminar un item específico'),
@@ -54,7 +63,7 @@ module.exports = {
                 const prod = await getAllMulti(search);
                 
                 const [prodRows] = Array.isArray(prod) ? prod : [prod];
-                console.log(prodRows);
+
                 res.render(path.resolve(__dirname, '../views/admin/admin.ejs'),
                 {
                     title: 'Item',
@@ -63,52 +72,6 @@ module.exports = {
                 )
             }
         }
-
-
-
-
-        /*if(!isNaN(search.charAt(0))){
-
-            const prod = await getOne(search);
-
-
-            if(prod.error){
-                res.render(path.resolve(__dirname, '../views/error/error.ejs'),
-                {
-                    title: 'Error',
-                    error: true,
-                    message: 'Estamos experimentando inconvenientes técnicos',
-                    message2: 'Prueba más tarde, por favor!'
-                }
-                )
-            }else{
-                const prodRows = Array.isArray(prod) ? prod : [prod];
-
-                const category_id = prodRows.category_id;
-                
-                const cat = await getOneCategory(category_id);
-                const [catRows] = cat;
-
-                const categoryPromises = prodRows.map(async (product) => {
-                    const category_id = product.category_id;
-                    const cat = await getOneCategory(category_id);
-                    const [catRows] = cat;
-                    return { ...product, catRows };
-                });
-
-                const prodFiller = await Promise.all(categoryPromises);
-                console.log(prodFiller);
-                res.render(path.resolve(__dirname, '../views/admin/admin.ejs'),
-                {
-                    title: 'Item',
-                    prodRows,
-                    prodFiller
-                }
-            )
-            }
-            }else{
-                console.log("No es un número");
-            }*/
         
     }
 }

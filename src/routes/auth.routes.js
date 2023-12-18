@@ -6,7 +6,7 @@ const {login, post_login, register, post_register, logout} = require('../control
 router.get('/login', login);
 router.post('/login', post_login);
 router.get('/register', register);
-router.post('/register', post_register);
+router.post('/register_success', post_register);
 router.get('/logout', logout);
 
 module.exports = router;

@@ -1,0 +1,18 @@
+<%- include('../partials/header.ejs') %>
+
+<main id="main_success" class="container">
+    <article class="register__success">
+        <h1>Registro realizado con éxito</h1>
+        <h2>Realizando redireccionamiento a home</h2>
+    </article>
+</main>
+
+<%- include('../partials/footer.ejs') %>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+        setTimeout(function(){
+            window.location.href = "/home";
+        }, 2000);
+    </script>
+</body>
+</html>

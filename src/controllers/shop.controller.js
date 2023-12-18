@@ -5,7 +5,11 @@ const { getAllLicence, getOneLicence } = require('../models/licence.model');
 module.exports = {
     
     shop: async (req, res) => {
-        
+        const isLogged = req.session.isLogged;
+
+        if(req.session.isLogged === undefined){
+            req.session.isLogged = false;
+        }
         const data = await getAll();
         
         if(data.error){
@@ -22,7 +26,8 @@ module.exports = {
             res.render(path.resolve(__dirname, '../views/shop/shop.ejs'),
             {
                 title: 'Shop',
-                rows
+                rows,
+                isLogged
             }
         )
         }
@@ -30,7 +35,11 @@ module.exports = {
         
     },
     item: async (req, res) => {
+        const isLogged = req.session.isLogged;
 
+        if(req.session.isLogged === undefined){
+            req.session.isLogged = false;
+        }
         const { id } = req.params;
         const prod = await getOne(id);
         const prods = await getAll();
@@ -69,7 +78,8 @@ module.exports = {
                 title: 'Item',
                 prodRows,
                 licRows,
-                prodSlider
+                prodSlider,
+                isLogged
             }
         )
         }
@@ -77,7 +87,16 @@ module.exports = {
     },
     add: (req, res) => res.send('Ruta para agregar nuevo item'),
     cart: (req, res) => {
-        res.render(path.resolve(__dirname, '../views/shop/cart.ejs'))
+        const isLogged = req.session.isLogged;
+
+        if(req.session.isLogged === undefined){
+            req.session.isLogged = false;
+        }
+        res.render(path.resolve(__dirname, '../views/shop/cart.ejs'),
+        {
+            title: 'Cart',
+            isLogged
+        })
     },
     post_cart: (req, res) => res.send('Ruta para agregar un item al carrito')
 }

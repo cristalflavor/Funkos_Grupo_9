@@ -1,5 +1,6 @@
 const express = require('express');
 
+const session = require('express-session');
 const app = express();
 const path = require('path');
 
@@ -23,7 +24,11 @@ app.set('views', path.join(__dirname, './src/views'));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(methodOverride('_method'));
-
+app.use(session({
+    secret: 'yippiekayyay', // Cambia esto a una cadena de texto segura
+    resave: false,
+    saveUninitialized: true
+  }));
 app.use(express.static('public_html'));
 
 // Rutas

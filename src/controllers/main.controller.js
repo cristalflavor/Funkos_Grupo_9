@@ -1,7 +1,14 @@
 module.exports = {
     home: (req, res) => {
+        const isLogged = req.session.isLogged;
+
+        if(req.session.isLogged === undefined){
+            req.session.isLogged = false;
+        }
+
         res.render('index_ejs', {
-        title: 'Home'
+        title: 'Home',
+        isLogged: isLogged
         }
     )},
     contact: (req, res) => {

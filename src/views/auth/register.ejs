@@ -28,8 +28,39 @@
             </ul>
         </nav>
     </header>
-    <main>
-
+    <main id="register">
+        <h1>CREA TU CUENTA</h1>
+        <p>Completa el formulario para ser parte del mundo de los funkos.</p>
+        <form id="register__form" class="edit__form" action="/auth/register_success" method="POST" enctype="application/x-www-form-urlencoded">
+            <div class="register__wrapper">
+            <label class="form__register--label" for="register__name">Nombre:</label>
+            <input type="text" class="form__input" name="register__name" />
+        </div>
+            <div class="register__wrapper">
+            <label class="form__register--label" for="register__lastname">Apellido:</label>
+            <input type="text" class="form__input" name="register__lastname" />
+        </div>
+            <div class="register__wrapper">
+            <label class="form__register--label" for="register__email">Email:</label>
+            <input type="text" class="form__input" name="register__email" />
+        </div>
+            <div class="register__wrapper">
+            <label class="form__register--label" for="register__password">Contraseña:</label>
+            <input type="password" class="form__input" name="register__password" />
+        </div>
+            <div class="register__wrapper">
+            <label class="form__register--label" for="register__repite_password">Repite Contraseña:</label>
+            <input type="password" class="form__input" name="register__repite_password" />
+            </div>
+            <div class="register__wrapper">
+                <input type="submit" id="register__submit" value="Registrarse" />
+                <input type="checkbox" id="register__checkbox" />
+                <label for="register__checkbox">Acepto términos y condiciones</label>
+            </div>
+            <div class="register__wrapper">
+                <label class="form__register--label" id="register__error"></label>
+            </div>
+        </form>
     </main>
     <footer class="footer">
         <nav class="navbar container">
@@ -54,5 +85,32 @@
         <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
     </footer>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+        let checked = document.getElementById("register__checkbox");
+        let info = document.getElementById("register__error");
+        document.getElementById("register__form").addEventListener("submit", function(event){
+
+            if(checked.checked){
+
+                let arregloDeInputs = document.getElementsByClassName("form__input");
+
+                let correcto = Array.from(arregloDeInputs).every(element => 
+                    element.value.trim() !== "");
+                if(!correcto){
+                    info.innerText = "Debe rellenar todos los campos";
+
+                    event.preventDefault();
+                }else{
+                    if(arregloDeInputs[4].value == arregloDeInputs[3].value){
+                        alert("bien");
+                    }else{
+                        event.preventDefault();
+                    }
+                }
+            }else{
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

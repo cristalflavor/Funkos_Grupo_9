@@ -62,7 +62,7 @@ const getOne = async (id) => {
 
     try{
         const data = await conn.query('SELECT * FROM product WHERE product_id = ?;', [id]);
-
+        
         return data[0];
     }catch(error){
         return {
