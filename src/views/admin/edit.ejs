@@ -33,7 +33,7 @@
 
       <main id="edit">
         <h2 class="edit__title">EDITAR ITEM</h2>
-        <form class="edit__form" action="/admin/edit" method="POST" enctype="application/x-www-form-urlencoded">
+        <form class="edit__form" action="/admin/edit/1?_method=PUT" method="POST" enctype="multipart/form-data">
           <div class="form__flex">
           <div class="form__box--flex">
             <label class="form__label" for="collection">Categoría:</label>
@@ -56,28 +56,28 @@
           <div>
             <div class="form__box--flex">
               <label class="form__label" for="name">Nombre del producto:</label>
-              <input class="form__input" type="text" name="name" id="name" placeholder="<%= prodRows.product_name %>" required />
+              <input class="form__input" type="text" name="name" id="name" placeholder="Nombre del producto" value="<%= prodRows.product_name %>" required />
             </div>
             <div>
-              <textarea name="description" id="description" cols="40" rows="5" placeholder="<%= prodRows.product_description %>" required></textarea>
+              <textarea name="description" id="description" cols="40" rows="5" placeholder="Descripción del producto" required><%= prodRows.product_description %></textarea>
             </div>
             <div>
               <div class="form__flex">
                 <div class="form__box--flex">
                   <label class="form__label" for="sku">SKU:</label>
-                  <input class="form__input" type="text" name="sku" id="sku" placeholder="<%= prodRows.sku %>" />
+                  <input class="form__input" type="text" name="sku" id="sku" placeholder="SKU del producto" value="<%= prodRows.sku %>" />
                 </div>
                 <div class="form__box--flex">
                   
                   <div class="form__box--flex">
                     <label class="form__label" for="price">Precio:</label>
-                    <input class="form__input" type="text" name="price" id="price" data-type="currency" placeholder="$<%= prodRows.product_price %>" required />
+                    <input class="form__input" type="text" name="price" id="price" data-type="currency" placeholder="$" value="$<%= prodRows.product_price %>" required />
                   </div>
                 </div>
                 <div class="form__box--flex">
                   <label class="form__label" for="stock">Stock:</label>
                   <div class="form__input--wrapper">
-                    <input class="form__input" type="text" name="stock" id="stock" placeholder="<%= prodRows.stock %>" required /><span>unidades</span>
+                    <input class="form__input" type="text" name="stock" id="stock" placeholder="Existencias del producto" value="<%= prodRows.stock %>" required /><span>unidades</span>
                   </div>
                 </div>
               </div>
@@ -87,12 +87,14 @@
             <input type="file" name="file" id="file" />
             <br /><br />
             <picture>
-              <img src="/img/<%= prodRows.img_front %>" id="front" />
+              <img src="/img/<%= prodRows.img_front %>" id="front" name="front"/>
             </picture>
             <picture>
-              <img src="/img/<%= prodRows.img_back %>" id="back" />
+              <img src="/img/<%= prodRows.img_back %>" id="back" name="back" />
             </picture>
           </div>
+          <input type="submit" id="edit__submit" value="Modificar Producto" />
+          <input type="button" id="limpiar" value="Limpiar" />
         </div>
         </form>
       </main>

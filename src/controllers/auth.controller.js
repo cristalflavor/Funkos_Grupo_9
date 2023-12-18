@@ -13,10 +13,7 @@ module.exports = {
 
             req.session.isLogged = true;
             res.redirect('/home');
-            /*res.render(path.resolve(__dirname, '../views/index_ejs.ejs'), {
-              title: "Home",
-              isLogged: req.session.isLogged
-            });*/
+
           } else {
             res.render(path.resolve(__dirname, '../views/auth/login.ejs'), {
               title: "Login",

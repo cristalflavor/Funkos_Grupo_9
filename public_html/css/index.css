@@ -751,6 +751,12 @@ table {
 
 
 /*EDIT*/
+#edit{
+    display: block;
+    position: relative;
+    width: 25%;
+}
+
 
 .edit__title {
     position: relative;
@@ -769,18 +775,20 @@ table {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    margin-top: 2%;
+    margin-bottom: 1%;
   }
   
   .form__label {
     font-weight: bold;
-    display: inline-block; /* usa display: inline-block para alinear el label con el input */
-    width: 80px; /* ajusta el ancho del label */
-    margin-right: 10px; /* crea un espacio entre el label y el input */
+    display: inline-block;
+    width: 80px;
+    margin-right: 10px;
   }
   
   .form__select, .form__input{
     width: 200px;
-    display: inline-block; /* usa display: inline-block para alinear el input con el label */
+    display: inline-block;
   }
 
 
