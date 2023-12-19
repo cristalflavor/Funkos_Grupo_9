@@ -58,6 +58,23 @@ const getAllWithCategory = async (id) => {
     }
 }
 
+const setOne = async (product_id, product_name, product_description, product_price, stock, discount, sku, dues, img_front, img_back, create_time, category_id, licence_id) => {
+    try{
+        const data = await conn.query('UPDATE producto SET product_id = ?, product_name = ?, product_description = ?, product_price = ?, stock = ?, discount = ?, sku = ?, dues = ?, img_front = ?, img_back = ?, create_time = ?, category_id = ?, licence_id = ? WHERE product_id = ?;',
+         [product_id, product_name, product_description, product_price, stock, discount, sku, dues, img_front, img_back, create_time, category_id, licence_id], product_id);
+        
+         console.log(data);
+        return data[0];
+    }catch(error){
+        return {
+            error: true,
+            message: 'Hemos encontrado un error: ' + error
+        }
+    }finally{
+        conn.releaseConnection();
+    }
+}
+
 const getOne = async (id) => {
 
     try{
@@ -78,5 +95,6 @@ module.exports = {
     getAll,
     getOne,
     getAllMulti,
-    getAllWithCategory
+    getAllWithCategory,
+    setOne
 }

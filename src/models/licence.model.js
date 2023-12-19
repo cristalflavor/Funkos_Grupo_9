@@ -1,5 +1,19 @@
 const { conn } = require('../config/conn');
 
+const getOneLicenceIdByLicenceName = async (licence_name) => {
+    try{
+        const data = await conn.query('SELECT licence_id FROM licence WHERE licence_name = ?;', [licence_name]);
+
+        return data[0];
+    }catch(error){
+        return {
+            error: true,
+            message: 'Hemos encontrado un error: ' + error
+        }
+    }finally{
+        conn.releaseConnection();
+    }
+}
 const getAllLicence = async () => {
 
     try{
@@ -34,5 +48,6 @@ const getOneLicence = async (id) => {
 
 module.exports = {
     getAllLicence,
-    getOneLicence
+    getOneLicence,
+    getOneLicenceIdByLicenceName
 }

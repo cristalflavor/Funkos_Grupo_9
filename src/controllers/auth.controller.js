@@ -7,9 +7,9 @@ module.exports = {
         const { login__email, login__password } = req.body;
         const isLogged = false;
         try {
-          const user_founded = await getOneUser(login__email, login__password);
-          
-          if (user_founded!=null) {
+          const [user_founded] = await getOneUser(login__email, login__password);
+          console.log(user_founded);
+          if (user_founded !== undefined) {
 
             req.session.isLogged = true;
             res.redirect('/home');
@@ -17,7 +17,8 @@ module.exports = {
           } else {
             res.render(path.resolve(__dirname, '../views/auth/login.ejs'), {
               title: "Login",
-              errorMessage: "Credenciales inválidas"
+              errorMessage: "Credenciales inválidas",
+              isLogged: req.session.isLogged = false
             });
           }
         } catch (error) {
@@ -43,7 +44,7 @@ module.exports = {
     post_register: (req, res) => {
         const isLogged = false;
         const { register__name, register__lastname, register__email, register__password } = req.body;
-
+        
         const fechaActual = new Date();
 
         const anyo = fechaActual.getFullYear();
@@ -55,7 +56,7 @@ module.exports = {
 
         const register__time = `${anyo}-${mes}-${dia}T${hora}:${minutos}:${segundos}`;
         setOneUser(register__name, register__lastname, register__email, register__password, register__time);
-
+        console.log(register__name, register__lastname, register__email, register__password, register__time );
         if(req.session.isLogged === undefined){
           req.session.isLogged = false;
         }

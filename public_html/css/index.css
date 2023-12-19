@@ -803,7 +803,7 @@ table {
     padding-left: 20px;
   }
 
-  #front, #back {
+  #funkoImg1, #funkoImg2 {
     display: inline-block;
     width: 100px;
     height: 100px;

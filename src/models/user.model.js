@@ -16,10 +16,11 @@ const getOneUser = async (email, pass) => {
     }
 }
 
-setOneUser = async(name, lastname, email, pass) => {
+setOneUser = async (name, lastname, email, pass, time) => {
     try{
-        const data = await conn.query('INSERT INTO user VALUES(?, ?, ?, ?);', [name, lastname, email, pass]);
-        console.log(email + " " + pass);
+        const data = await conn.query('INSERT INTO user (name, lastname, email, password, create_time) VALUES(?, ?, ?, ?, ?);', [name, lastname, email, pass, time]);
+        console.log("ACAAAAAAAAAA");
+        console.log(data[0]);
         return data[0];
     }catch(error){
         return {

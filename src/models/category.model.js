@@ -1,5 +1,20 @@
 const { conn } = require('../config/conn');
 
+const getOneCategoryIdByCategoryName = async (category_name) => {
+    try{
+        const data = await conn.query('SELECT category_id FROM category WHERE category_name = ?;', [category_name]);
+
+        return data[0];
+    }catch(error){
+        return {
+            error: true,
+            message: 'Hemos encontrado un error: ' + error
+        }
+    }finally{
+        conn.releaseConnection();
+    }
+}
+
 const getAllCategory = async () => {
 
     try{
@@ -51,5 +66,6 @@ const getOneCategory = async (id) => {
 module.exports = {
     getAllCategory,
     getOneCategory,
-    getAllCategoryName
+    getAllCategoryName,
+    getOneCategoryIdByCategoryName
 }
